@@ -1,8 +1,5 @@
-
-const express = require('express');
+const express = require('express')
 const game = require('./game/controller');
-
-
 
 const app = express();
 

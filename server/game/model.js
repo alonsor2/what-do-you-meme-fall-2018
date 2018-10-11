@@ -6,17 +6,17 @@ const captions = [
 
 ];
 
-class Game{
+class Game {
     constructor(){
         this.picture = "";
         this.players = [];
         this.playedCaptions = [
-            {text: "I dont always..."}
-        ]; 
+            {text: "I don't always..."}
+        ];
     }
 }
 
-class Player{
+class Player {
     constructor(name){
         this.name = name;
         this.captions = [];
