@@ -11,7 +11,9 @@ export function GetMyCaptions(){
 export function FlipPicture(){
     return myFetch(api_root + "/picture", {})
 }
-
+export function GetPlayers(){
+    return myFetch(api_root + `/players`)
+}
 
 
 

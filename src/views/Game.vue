@@ -48,7 +48,7 @@
 </style>
 
 <script>
-import { GetState, FlipPicture, GetMyCaptions } from '@/services/api_access';
+import { GetState, FlipPicture, GetMyCaptions, GetPlayers } from '@/services/api_access';
 
 export default {
     data: function(){
@@ -66,7 +66,8 @@ export default {
         .then(x=> this.state = x);
         GetMyCaptions()
         .then(x=> this.myCaptions = x);
-        
+        GetPlayers()
+        .then(x=> this.GetPlayers = x);
     },
     methods: {
         flipPicture: function(){
