@@ -17,6 +17,8 @@ class Game {
         this.isDealer = (id)=> id == this.dealerId;
     } 
 
+    
+
     getPlayedCaptions(){
         if(this.playedCaptions.some(x=> x.isChosen)){
             return  this.playedCaptions.map(x=> ({ ...x, playerName: this.players[x.playerId].name }));
