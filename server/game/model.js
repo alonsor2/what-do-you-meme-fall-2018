@@ -17,9 +17,7 @@ class Game {
         this.isDealer = (id)=> id == this.dealerId;
     } 
 
-    GetPlayers(){
-        return this.players;
-    }
+    
 
     getPlayedCaptions(){
         if(this.playedCaptions.some(x=> x.isChosen)){
