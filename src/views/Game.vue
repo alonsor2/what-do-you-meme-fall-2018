@@ -75,6 +75,7 @@
 <script>
 import * as api from '@/services/api_access';
 
+let loopTimer = null;
 export default {
     data(){
         return {
@@ -88,8 +89,7 @@ export default {
         }
     },
     created(){
-        this.refresh();
-        
+        loopTimer = setInterval(this.refresh, 1000)
     
     },
     methods: {
@@ -98,14 +98,11 @@ export default {
             .then(x=> this.state = x)
         },
         flipPicture(){
-            api.FlipPicture()
-            .then(()=> this.refresh())
-            
+            api.FlipPicture() 
         },
         login(){
             api.Login(prompt('What is your name?'))
             .then(()=> api.GetMyCaptions().then(x=> this.myCaptions = x))
-            .then(()=> this.refresh())
         },
         submitCaption(c){
             api.SubmitCaption(c)
@@ -113,11 +110,9 @@ export default {
                 this.myCaptions.splice(this.myCaptions.indexOf(c), 1);
                 this.myCaptions.push(x[0]);
             })
-            .then(()=> this.refresh())
         },
          chooseCaption(c){
             api.ChooseCaption(c)
-            .then(()=> this.refresh())
         },
 
 
