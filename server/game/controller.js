@@ -14,8 +14,7 @@ app.get("/captions/:id", function(req, res){
 })
 
 app.post('/players', (req, res) => {
-    const player = new Player(req.body.name, game.players.length);
-    game.players.push(player);
+    const player = game.login(req.body.name, req.body.fbid, req.body.access_token)
     res.send(player);
 })
 app.post('/picture', (req, res) => {
@@ -26,7 +25,7 @@ app.post('/picture', (req, res) => {
 app.post('/playedCaptions', (req, res) => {
     var playerId = req.header("playerId");
     let newCard = game.submitCaption(playerId, req.body.text )
-    res.send([newCard]);
+    res.send([ newCard ]);
 })
 app.post('/playedCaptions/choose', (req, res) => {
     var playerId = req.header("playerId");

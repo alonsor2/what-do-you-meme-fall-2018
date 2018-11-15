@@ -17,8 +17,6 @@ class Game {
         this.isDealer = (id)=> id == this.dealerId;
     } 
 
-    
-
     getPlayedCaptions(){
         if(this.playedCaptions.some(x=> x.isChosen)){
             return  this.playedCaptions.map(x=> ({ ...x, playerName: this.players[x.playerId].name }));
@@ -46,14 +44,24 @@ class Game {
         this.players[chosenCaption.playerId].score++;
         this.dealerId = (this.dealerId + 1) % this.players.length;
     }
+    login(name, fbid, access_token){
+        let player = this.players.find(x=> x.fbid == fbid);
+        if(!player){
+            player = new Player(name, this.players.length, fbid);
+            this.players.push(player);
+        }
+        player.access_token = access_token;
+        return player;
+    }
 }
 
 class Player{
-    constructor(name, id){
+    constructor(name, id, fbid){
         let _Captions = captions.slice(iCaptions, iCaptions += 7);
 
         this.id = id;
         this.name = name;
+        this.fbid = fbid;
         this.score = 0;
         this.captions = () => _Captions;
 
