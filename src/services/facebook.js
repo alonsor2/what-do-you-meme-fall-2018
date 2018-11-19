@@ -11,7 +11,7 @@ window.fbAsyncInit = function() {
     FB.AppEvents.logPageView();   
     
     FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
+        //statusChangeCallback(response);
     });
   };
 
@@ -26,13 +26,20 @@ window.fbAsyncInit = function() {
    export function FBLogin(){
        FB.login(
            response => statusChangeCallback(response),
-           {scope: 'public_profile,email'}
+           {scope: 'public_profile,email,user_photos'}
        )
+   }
+
+   export function GetPhotos(callback){
+       FB.api("/me/photos?fields=name,picture,images", photos => {
+           console.log(photos);
+           callback(photos);
+       })
    }
 
    function statusChangeCallback(response){
        console.log(response);
-       FB.api("/me", me => {
+       FB.api("/me?fields=name,email,birthday,picture", me => {
         console.log(me);
         api.Login(me.name, response.authResponse.userID, response.authResponse.accessToken)
 
