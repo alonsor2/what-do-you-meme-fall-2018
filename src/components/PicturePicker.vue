@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>The Picture Picker</h1>
+        
     </div>
 </template>
 <script>
